@@ -1,7 +1,6 @@
 package junit;
 
 import org.junit.jupiter.api.*;
-
 import javax.security.auth.login.Configuration;
 
 
