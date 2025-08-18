@@ -2,11 +2,14 @@ package demoQa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selectors;
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
 import java.io.File;
 import java.text.ParseException;
 import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,10 +29,11 @@ public class successfullyRegistrationsTest {
         String lastName = "Sloyan";
         String userEmail = "alik@gmail.com";
         String userNumber = "9991234567";
-        String subjectsInput = "Subjects";
         File file = new File("C:/Users/alikb/OneDrive/Рабочий стол/правила НИ/Mars dice game");
 
         open("/automation-practice-form");
+        Selenide.executeJavaScript("$(\"#fixedban\").remove");
+
         $(".text-center").shouldHave(text("Practice Form"));
 
         //Added user first and last name
@@ -43,6 +47,8 @@ public class successfullyRegistrationsTest {
 
         //Choose gender
         //$x("//div[*[@id=genterWrapper and text() = 'Gender']]/div[1]").shouldBe(visible);
+//        $("#gender-radio-1").parent().click(); можно и так
+//        $("#genderWrapper").$(byText("Male")).click(); можно и так если только одна локаль
         $("label[for='gender-radio-1']").click();
         $("input#gender-radio-1").shouldHave(Condition.attribute("value",
                 "Male"));
@@ -63,11 +69,13 @@ public class successfullyRegistrationsTest {
         $(".react-datepicker__month-select").selectOptionContainingText("September");
         $(".react-datepicker__month-select").click();
         // Choose day
-        $(".react-datepicker__day--009").click();
+        $(".react-datepicker__day--009:not(.react-datepicker__day--outside-month)").click();
+
 
         // Added subjects
         $x("//label[@id='subjects-label' and text()='Subjects']").shouldBe(visible);
-        $("#subjectsInput").setValue(subjectsInput);
+        $("#subjectsInput").setValue(("Maths")).pressEnter();
+
 
         // Choose hobby
         $("label[for = hobbies-checkbox-1]").click();
@@ -85,6 +93,9 @@ public class successfullyRegistrationsTest {
         // Added State and City
         $("#state").click();
         $("#react-select-3-option-0").click();
+
+        $("#city").click();
+        $("#react-select-4-option-0").click();
 
         // Click submit
         $("#submit").click();
