@@ -1,17 +1,17 @@
-package demoQa;
+package demoQa.examplePageObject;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
-import java.text.ParseException;
 import java.time.Duration;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class successfullyRegistrationsTest {
