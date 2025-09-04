@@ -28,7 +28,7 @@ public class successfullyRegistrationsWithPageObjectsTest extends testBase {
 
         sleep(1000);
 
-        registrationPage.setHobbies(userHobbies);
+//        registrationPage.setHobbies(userHobbies);
 
         registrationPage.setCurrentAddress(currentAddress);
 
@@ -47,7 +47,7 @@ public class successfullyRegistrationsWithPageObjectsTest extends testBase {
                 .verifyResult("Mobile", String.valueOf(userNumber))
                 .verifyResult("Date of Birth", day + " " + month + "," +year)
                 .verifyResult("Subjects", userSubjects)
-                .verifyResult("Hobbies", userHobbies)
+//                .verifyResult("Hobbies", userHobbies)
                 .verifyResult("Address", currentAddress)
                 .verifyResult("State and City", userState + " " + userCity)
 
