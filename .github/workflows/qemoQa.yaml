@@ -1,6 +1,6 @@
 name: demoQA
 
-on: workflow_dispatch
+on: [push]
 
 jobs:
   demoQA:
@@ -14,6 +14,19 @@ jobs:
           java-version: '22'
 
       - uses: Xotabu4/selenoid-github-action@v2
+
+      # Создание GitHub Deployment
+      - name: Create GitHub Deployment
+        id: create_deployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DEPLOY_RESPONSE=$(curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            https://api.github.com/repos/${{ github.repository }}/deployments \
+            -d '{"ref":"main","required_contexts":[],"auto_merge":false,"environment":"production","description":"Deployment from demoQA workflow"}')
+          echo "::set-output name=deployment_id::$(echo "$DEPLOY_RESPONSE" | jq -r '.id')"
 
       # запуск тестов
       - run: chmod +x ./gradlew
@@ -44,3 +57,27 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
+
+      # Обновляем статус деплоя на success при успешном выполнении всех шагов до этого
+      - name: Update Deployment Status - success
+        if: ${{ success() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            https://api.github.com/repos/${{ github.repository }}/deployments/${{ steps.create_deployment.outputs.deployment_id }}/statuses \
+            -d '{"state": "success"}'
+
+      # Обновляем статус деплоя на failure, если что-то пошло не так
+      - name: Update Deployment Status - failure
+        if: ${{ failure() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            https://api.github.com/repos/${{ github.repository }}/deployments/${{ steps.create_deployment.outputs.deployment_id }}/statuses \
+            -d '{"state": "failure"}'
