@@ -1,10 +1,11 @@
-package demoQa;
+package demoQa.facker;
 
 
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 
-public class successfullyRegistrationsWithPageObjectsTest extends testBase {
+public class successfullyRegistrationsWithPageObjectsTestWithFacker extends testBaseFacker {
 
     @Test
     void fieldAutomationPracticeForm()  {
@@ -12,9 +13,10 @@ public class successfullyRegistrationsWithPageObjectsTest extends testBase {
         String lastName = "Sloyan";
         String userEmail = "alik@gmail.com";
         String userNumber = "9991234567";
+//        File file = new File("/1.png");
         File file = new File("C:/Users/alikb/OneDrive/Рабочий стол/правила НИ/тауантинсуй");
 
-        registrationPage.openPage()
+        registrationPageFacker.openPage()
                         .setFirstName(firstName)
                         .setLastName(lastName)
                         .setEmail(userEmail)
@@ -25,14 +27,14 @@ public class successfullyRegistrationsWithPageObjectsTest extends testBase {
                         .setHobbies("Music")
                         .setCurrentAddress("Russian Federation");
 
-        registrationPage.fileDownload(file)
+        registrationPageFacker.fileDownload(file)
 
                         .setStateAndCity("NCR", "Delhi")
 
                         .clickOnSubmit();
 
         // Test pop-up
-        registrationPage.verifyResultModuleAppears()
+        registrationPageFacker.verifyResultModuleAppears()
                 .verifyResult("Student Name", firstName + " " + lastName)
                 .verifyResult("Student Email", userEmail)
                 .verifyResult("Gender", "Male")

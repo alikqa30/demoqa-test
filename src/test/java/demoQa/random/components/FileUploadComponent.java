@@ -1,4 +1,4 @@
-package pages.components;
+package demoQa.random.components;
 
 import java.io.File;
 

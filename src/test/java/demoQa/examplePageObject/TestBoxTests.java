@@ -1,20 +1,14 @@
-package demoQa;
+package demoQa.examplePageObject;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.Keys;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.text.ParseException;
-import java.time.Duration;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchException;
-import static org.assertj.core.api.InstanceOfAssertFactories.DURATION;
 
 
 public class TestBoxTests {

@@ -1,4 +1,4 @@
-package pages.components;
+package demoQa.facker.components;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
