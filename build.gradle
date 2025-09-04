@@ -1,6 +1,22 @@
 plugins {
     id 'java-library'
+    id('io.qameta.allure') version '3.0.0'
 }
+
+allure {
+    report {
+        version.set("2.20.1")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.20.1")
+            }
+        }
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -12,7 +28,8 @@ dependencies {
             "org.junit.jupiter:junit-jupiter:5.9.3",
             "org.slf4j:slf4j-simple:2.0.17",
             "org.assertj:assertj-core:3.24.2",
-            "com.github.javafaker:javafaker:0.15"
+            "com.github.javafaker:javafaker:0.15",
+            "io.qameta.allure:allure-selenide:2.29.1"
     )
 }
 
@@ -22,4 +39,5 @@ tasks.withType(JavaCompile) {
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
