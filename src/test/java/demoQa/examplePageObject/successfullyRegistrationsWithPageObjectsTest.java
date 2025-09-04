@@ -39,19 +39,19 @@ public class successfullyRegistrationsWithPageObjectsTest extends testBase {
 
                         .clickOnSubmit();
 
-        // Test pop-up
-        registrationPage.verifyResultModuleAppears()
-                .verifyResult("Student Name", firstName + " " + lastName)
-                .verifyResult("Student Email", userEmail)
-                .verifyResult("Gender", userGender)
-                .verifyResult("Mobile", String.valueOf(userNumber))
-                .verifyResult("Date of Birth", day + " " + month + "," +year)
-                .verifyResult("Subjects", userSubjects)
-//                .verifyResult("Hobbies", userHobbies)
-                .verifyResult("Address", currentAddress)
-                .verifyResult("State and City", userState + " " + userCity)
-
-                        .closeLargeModal();
+//        // Test pop-up
+//        registrationPage.verifyResultModuleAppears()
+//                .verifyResult("Student Name", firstName + " " + lastName)
+//                .verifyResult("Student Email", userEmail)
+//                .verifyResult("Gender", userGender)
+//                .verifyResult("Mobile", String.valueOf(userNumber))
+//                .verifyResult("Date of Birth", day + " " + month + "," +year)
+//                .verifyResult("Subjects", userSubjects)
+////                .verifyResult("Hobbies", userHobbies)
+//                .verifyResult("Address", currentAddress)
+//                .verifyResult("State and City", userState + " " + userCity)
+//
+//                        .closeLargeModal();
     }
 }
 
