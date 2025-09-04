@@ -37,7 +37,7 @@ public class RegistrationPage {
             state = $("#state"),
             city = $("#city");
 
-    @Step("Открываем форму регистрации")
+    @Step("Открываем форму регистрации!")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         Selenide.executeJavaScript("$(\"#fixedban\").remove");
