@@ -10,16 +10,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class NegativeTest {
 
     @Test
+    @Tag("simple")
     void test1() {
         assertTrue(false);
     }
 
     @Test
+    @Tag("simple")
     void test2() {
         assertTrue(false);
     }
 
     @Test
+    @Tag("simple")
     void test3() {
         assertTrue(false);
     }
