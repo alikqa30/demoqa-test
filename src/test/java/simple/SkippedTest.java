@@ -12,7 +12,7 @@ public class SkippedTest {
     @Test
     @Disabled
     @Tag("simple")
-    void test1() {
+    void test() {
         assertTrue(false);
     }
 
