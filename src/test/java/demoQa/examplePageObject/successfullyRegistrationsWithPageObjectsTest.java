@@ -3,6 +3,8 @@ package demoQa.examplePageObject;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -12,6 +14,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 public class successfullyRegistrationsWithPageObjectsTest extends testBase {
 
     @Test
+    @Tag("remote")
     void fieldAutomationPracticeForm()  {
         SelenideLogger.addListener("allure", new AllureSelenide());
         File file = new File("C:/Users/alikb/OneDrive/Рабочий стол/правила НИ/тауантинсуй");

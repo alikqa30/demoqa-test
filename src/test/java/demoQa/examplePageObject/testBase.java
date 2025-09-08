@@ -7,10 +7,13 @@ import demoQa.examplePageObject.pages.RegistrationPage;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Locale;
+import java.util.Map;
 
 import static io.qameta.allure.Allure.step;
+import static java.util.List.of;
 
 public class testBase {
     RegistrationPage registrationPage = new RegistrationPage();
@@ -22,6 +25,14 @@ public class testBase {
             Configuration.baseUrl = "https://demoqa.com";
             Configuration.holdBrowserOpen = true;
             Configuration.timeout = 5000;
+
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("browserName", "chrome");
+            capabilities.setCapability("selenoide:options", Map.<String, Object>of(
+                    "enableVNC", "true",
+                    "enableVideo", "true"
+            ));
+            Configuration.browserCapabilities = capabilities;
         });
     }
 
