@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","21512","fieldAutomationPracticeForm()","","Mon Sep 08 12:58:38 UTC 2025","failed","Mon Sep 08 12:59:00 UTC 2025","","demoQa.examplePageObject.successfullyRegistrationsWithPageObjectsTest","demoQa.examplePageObject.successfullyRegistrationsWithPageObjectsTest","fieldAutomationPracticeForm"
