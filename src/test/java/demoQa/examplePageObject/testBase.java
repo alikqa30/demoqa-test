@@ -4,8 +4,10 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import demoQa.examplePageObject.pages.RegistrationPage;
+import demoQa.helpers.Attach;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -54,9 +56,6 @@ public class testBase {
     public String currentAddress = faker.address().fullAddress();
     public String userState = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     public String userCity = getStateAndCity();
-
-
-
 
     public String getRandomValue(String ...values) {
         return faker.options().option(values);
@@ -119,4 +118,13 @@ public class testBase {
          return stateAndCity;
     }
 
+
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screen shot");
+        Attach.browserConsoleLogs();
+        Attach.pageSource();
+        Attach.attachAsText("Test", "test");
+        Attach.addVideo();
+    }
 }
